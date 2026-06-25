@@ -4,90 +4,30 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var show = false;
+
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CounterPage(),
-    );
-  }
-}
-
-class CounterPage extends StatefulWidget {
-  const CounterPage({super.key});
-
-  @override
-  State<CounterPage> createState() => _CounterPageState();
-}
-
-class _CounterPageState extends State<CounterPage> {
-  int count = 0;
-
-  void incrementCounter() {
-    setState(() {
-      count++;
-    });
-  }
-
-  void decrementCounter() {
-    setState(() {
-      count--;
-    });
-  }
-
-  void resetCounter() {
-    setState(() {
-      count = 0;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Counter App")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(count > 10 ? "Great Job!" : "Keep Clicking"),
-            const Text("Counter Value", style: TextStyle(fontSize: 24)),
-
-            const SizedBox(height: 20),
-
-            Text(
-              "$count",
-              style: const TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            ),
-
-            const SizedBox(height: 30),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: decrementCounter,
-                  child: const Text("-"),
-                ),
-
-                const SizedBox(width: 10),
-
-                ElevatedButton(
-                  onPressed: resetCounter,
-                  child: const Text("Reset"),
-                ),
-
-                const SizedBox(width: 10),
-
-                ElevatedButton(
-                  onPressed: incrementCounter,
-                  child: const Text("+"),
-                ),
-              ],
-            ),
-          ],
+      home: Scaffold(
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              setState(() {
+                show = !show;
+              });
+            },
+            child: show ? const Text("Hide") : const Text("Show"),
+          ),
         ),
       ),
     );
