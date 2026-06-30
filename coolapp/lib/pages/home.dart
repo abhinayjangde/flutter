@@ -8,26 +8,35 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int count = 0;
+
+  void increment() {
+    setState(() {
+      count++;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      count--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // var time = DateTime.now();
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-        backgroundColor: Colors.blueGrey,
-        foregroundColor: Colors.white,
-      ),
-      body: GridView.count(
-        crossAxisCount: 3,
+      body: Row(
+        spacing: 20,
         children: [
-          Container(color: Colors.red),
-          Container(color: Colors.orange),
-          Container(color: Colors.yellow),
-          Container(color: Colors.green),
-          Container(color: Colors.blue),
-          Container(color: Colors.indigo),
-          Container(color: Colors.purple),
-          Container(color: Colors.pink),
+          ElevatedButton(
+            onPressed: decrement,
+            child: Text(
+              "-",
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Text("$count"),
+          ElevatedButton(onPressed: increment, child: const Icon(Icons.add)),
         ],
       ),
     );
