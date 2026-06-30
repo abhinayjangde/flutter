@@ -8,37 +8,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int count = 0;
-
-  void increment() {
-    setState(() {
-      count++;
-    });
-  }
-
-  void decrement() {
-    setState(() {
-      count--;
-    });
-  }
-
+  var email = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
-        spacing: 20,
-        children: [
-          ElevatedButton(
-            onPressed: decrement,
-            child: Text(
-              "-",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Text("$count"),
-          ElevatedButton(onPressed: increment, child: const Icon(Icons.add)),
-        ],
-      ),
+      appBar: myAppBar(),
+      drawer: myDrawer(),
+      body: Text("hello"),
     );
   }
+}
+
+Drawer myDrawer() {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: const [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Colors.green),
+          child: Text(
+            'Menu',
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Home'),
+          // trailing: Icon(Icons.arrow_forward),
+        ),
+        ListTile(leading: Icon(Icons.settings), title: Text('Settings')),
+      ],
+    ),
+  );
+}
+
+AppBar myAppBar() {
+  return AppBar(
+    title: const Text('CoolApp', style: TextStyle(color: Colors.black)),
+    backgroundColor: Colors.green,
+  );
 }
