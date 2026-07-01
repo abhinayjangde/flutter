@@ -1,12 +1,14 @@
-Future<String> getName() {
-  return Future.delayed(Duration(seconds: 2), () {
-    return "Abhi";
-  });
+Future<String> fetchName() {
+  return Future.delayed(Duration(seconds: 2), () => "Abhi");
+}
+
+Stream<int> counter() async* {
+  for (int i = 1; i <= 5; i++) {
+    yield i;
+  }
 }
 
 void main() async {
-  print("start");
-  var name = await getName();
-  print(name);
-  print("done");
+  var count = await counter();
+  print(count);
 }
