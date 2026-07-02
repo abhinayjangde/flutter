@@ -1,4 +1,5 @@
 import 'package:dartlang/constants/colors.dart';
+import 'package:dartlang/widgets/todo_item.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -27,6 +28,7 @@ class Home extends StatelessWidget {
                       ),
                     ),
                   ),
+                  TodoItem(),
                 ],
               ),
             ),
